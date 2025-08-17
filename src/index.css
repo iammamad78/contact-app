@@ -8,11 +8,20 @@
   box-sizing: border-box;
   color-scheme: light dark;
   background-color: white;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  color: #000;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+input {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+}
+
+
 
 body {
   margin: auto;
@@ -20,5 +29,4 @@ body {
   max-width: 1000px;
   min-height: 100vh;
   text-align: center;
-  color: #000;
 }
