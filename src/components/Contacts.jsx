@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import ContactList from "./ContactList";
+import inputs from "../constants/Inputs";
+import { v4 } from "uuid";
 
 function Contacts() {
   const [alert, setAlert] = useState("");
   const [contacts, setContacts] = useState([]);
 
   const [contact, setContact] = useState({
+    id: "",
     name: "",
     lastName: "",
     email: "",
@@ -30,47 +33,36 @@ function Contacts() {
       return;
     }
     setAlert("");
-    setContacts((prevContacts) => [...prevContacts, contact]);
+    const newContact = { ...contact, id: v4() };
+    console.log(newContact);
+
+    setContacts((prevContacts) => [...prevContacts, newContact]);
     setContact({ name: "", lastName: "", email: "", phone: "" });
   };
 
+  const deleteHandler = (id) => {
+    const filteredContacts = contacts.filter((contact) => contact.id !== id);
+    setContacts(filteredContacts);
+  };
   return (
     <div>
       <div>
-        <input
-          onChange={changeHandler}
-          value={contact.name}
-          name="name"
-          type="text"
-          placeholder="Name"
-        />
-        <input
-          onChange={changeHandler}
-          value={contact.lastName}
-          name="lastName"
-          type="text"
-          placeholder="Last Name"
-        />
-        <input
-          onChange={changeHandler}
-          value={contact.email}
-          name="email"
-          type="text"
-          placeholder="Email"
-        />
-        <input
-          onChange={changeHandler}
-          value={contact.phone}
-          name="phone"
-          type="number"
-          placeholder="Phone"
-        />
+        {inputs.map((input, index) => (
+          <input
+            key={index}
+            name={input.name}
+            placeholder={input.placeholder}
+            type={input.type}
+            onChange={changeHandler}
+            value={contact[input.name]}
+          />
+        ))}
 
         <button onClick={addHandler}>Add contact</button>
       </div>
       <div className="text-red-500">{alert && <p>{alert}</p>}</div>
 
-      <ContactList />
+      <ContactList contacts={contacts} deleteHandler={deleteHandler}/>
     </div>
   );
 }
