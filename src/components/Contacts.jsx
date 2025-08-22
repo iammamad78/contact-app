@@ -45,8 +45,8 @@ function Contacts() {
     setContacts(filteredContacts);
   };
   return (
-    <div>
-      <div>
+    <div className="container mx-auto">
+      <div className="bg-white p-10 rounded-3xl shadow-md shadow-blue-100 m-8 flex flex-wrap gap-4 items-center justify-center">
         {inputs.map((input, index) => (
           <input
             key={index}
@@ -55,14 +55,22 @@ function Contacts() {
             type={input.type}
             onChange={changeHandler}
             value={contact[input.name]}
+            className="w-80  outline-none border-gray-300 border-2 p-3 rounded-lg focus:border-blue-400 transition"
           />
         ))}
 
-        <button onClick={addHandler}>Add contact</button>
+        <button
+          onClick={addHandler}
+          className="w-80 md:w-165 bg-blue-600 rounded-lg text-white p-3 hover:bg-blue-700 transition"
+        >
+          Add contact
+        </button>
       </div>
-      <div className="text-red-500">{alert && <p>{alert}</p>}</div>
+      <div className={"text-red-500 bg-red-200 rounded-lg text-center"}>
+        {alert && <p>{alert}</p>}
+      </div>
 
-      <ContactList contacts={contacts} deleteHandler={deleteHandler}/>
+      <ContactList contacts={contacts} deleteHandler={deleteHandler} />
     </div>
   );
 }

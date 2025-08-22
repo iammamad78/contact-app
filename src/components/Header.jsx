@@ -2,7 +2,7 @@ import React from "react";
 
 function Header() {
   return (
-    <div className="m-20 flex flex-col gap-8">
+    <div className="m-10 flex flex-col gap-4">
       <h1 className="text-4xl text-blue-700 font-bold">Contact App</h1>
       <p className="flex justify-center items-center gap-2">
         <a

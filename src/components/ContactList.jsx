@@ -3,10 +3,10 @@ import ContactItem from "./ContactItem";
 
 function ContactList({ contacts, deleteHandler }) {
   return (
-    <div>
-      <h3>Contacts List</h3>
+    <div className="mt-10">
+      <h3 className="text-lg text-blue-600">Contacts List</h3>
       {contacts.length ? (
-        <ul>
+        <ul className="flex flex-col gap-4 bg-white mt-10">
           {contacts.map((contact) => (
             <ContactItem
               key={contact.id}
